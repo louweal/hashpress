@@ -1,3 +1,3 @@
 # hashpress
 
-(hashpresspioneers.com)[https://hashpresspioneers.com]
+[hashpresspioneers.com](https://hashpresspioneers.com)
