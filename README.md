@@ -1,3 +1,3 @@
-# hashpresspioneers
+# hashpress
 
-WordPress theme for demonstrating WordPress Plugins build by HashPress Pioneers.
+(hashpresspioneers.com)[https://hashpresspioneers.com]
