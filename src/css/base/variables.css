@@ -1,0 +1,60 @@
+/* Custom media queries */
+@custom-media --480 (min-width: 30em);
+@custom-media --xs (min-width: 30em);
+@custom-media --640 (min-width: 40em);
+@custom-media --sm (min-width: 40em);
+@custom-media --768 (min-width: 48em);
+@custom-media --md (min-width: 48em);
+@custom-media --992 (min-width: 62em);
+@custom-media --1024 (min-width: 64em);
+@custom-media --lg (min-width: 64em);
+@custom-media --1280 (min-width: 80em);
+@custom-media --xl (min-width: 80em);
+@custom-media --1536 (min-width: 96em);
+@custom-media --2xl (min-width: 96em);
+@custom-media --1600 (min-width: 100em);
+@custom-media --3xl (min-width: 100em);
+
+/* Custom selectors */
+@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+@custom-selector :--text p, span, a:not(.button), li, mark, sup, sub, blockquote, pre, code;
+
+/* Variables */
+:root {
+    /* Colors */
+    --color-light: #f2eff3;
+    --color-dark: #403345;
+    --color-background: rgba(231, 210, 207, 0.08);
+    --color-body: #353535;
+    --color-heading: #353535;
+    --color-primary: #f5a623;
+    --color-secondary: #353535;
+    --color-accent: #e7d2cf;
+
+    /* Font families */
+
+    --font-heading: 'Afacad Flux', Arial, sans-serif;
+    --font-body: 'Afacad Flux', sans-serif;
+
+    --filter-primary: invert(77%) sepia(12%) saturate(7380%) hue-rotate(344deg) brightness(104%) contrast(92%);
+
+    /* Effects */
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    /* Sizes */
+    --container-width: 73.125rem;
+    --header-height: 4.375rem;
+    --hero-height: auto;
+    --hero-height-large: auto;
+
+    /* 64em */
+    @media (--1024) {
+        --header-height: 4.375rem;
+        --hero-height: 37.5rem;
+    }
+
+    /* 100em */
+    @media (--1600) {
+        --hero-height: 45rem;
+    }
+}

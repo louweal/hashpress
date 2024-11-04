@@ -1,0 +1,110 @@
+.header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 12;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    /* text-transform: uppercase; */
+    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    padding: 0 1rem;
+    background-color: var(--color-primary);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 30%, rgba(255, 255, 255, 0.01));
+
+    .has-scrolled & {
+        box-shadow: var(--shadow);
+    }
+
+    &__logo {
+        width: 12rem;
+
+        &:hover {
+            .hbar {
+                transform: rotate(180deg);
+            }
+        }
+
+        .hbar {
+            transform-origin: center;
+            transform-box: fill-box;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+    }
+
+    /* &__menu {
+        ul {
+            list-style-type: none;
+            display: flex;
+            gap: 1rem;
+        }
+    } */
+}
+
+@keyframes growShrink {
+    70% {
+        transform: scale(0.96);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-dark);
+    z-index: -1;
+    background: linear-gradient(180deg, #000, var(--color-dark));
+}
+
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 6s ease-in-out infinite;
+}
+
+.sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (--lg) {
+        position: fixed;
+        top: 0;
+        left: max(calc((100vw - 80rem) / 2), 1rem);
+        height: 100vh;
+    }
+
+    &__inner {
+        z-index: 3;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: scale(10%);
+        opacity: 0.3;
+    }
+    66% {
+        transform: scale(100%) translate(0px, -50px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}

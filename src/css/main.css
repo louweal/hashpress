@@ -1,0 +1,35 @@
+/* Vendor */
+/* @import "../../node_modules/xxx/xxx.css"; */
+@import '../../node_modules/swiper/swiper-bundle.css';
+
+/* Base */
+@import 'base/tailwind';
+@import 'base/variables';
+@import 'base/global';
+@import 'base/text';
+@import 'base/wordpress';
+
+/* Layout */
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/section';
+
+/* Components */
+@import 'components/hero';
+@import 'components/btn';
+@import 'components/editor';
+@import 'components/slider';
+@import 'components/form';
+@import 'components/toggle';
+@import 'components/socials';
+@import 'components/mobile-menu';
+@import 'components/card';
+@import 'components/index';
+
+/* Demos */
+@import 'components/demo-hashpress-pay';
+
+/* Plugins */
+@import 'plugins/woocommerce';
+@import 'plugins/hederapay';
+@import 'plugins/realviews';

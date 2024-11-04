@@ -1,0 +1,8 @@
+.hederapay-transaction-notices {
+    font-size: 0.8125rem;
+    color: var(--color-secondary);
+}
+
+.btn.is-connected {
+    background-color: var(--color-body);
+}

@@ -1,0 +1,21 @@
+.realviews-review__icon {
+    background-color: var(--color-primary);
+}
+
+.realviews-write-review {
+    background-color: var(--color-secondary);
+
+    &:hover {
+        background-color: var(--color-primary);
+    }
+}
+
+.realviews-review__username {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.realviews-review__date1,
+.realviews-review__date2 {
+    font-size: 0.8125rem;
+}

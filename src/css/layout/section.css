@@ -1,0 +1,19 @@
+.section {
+    padding: 3.125rem 0;
+    position: relative;
+
+    @media (--lg) {
+        padding: 4.25rem 0;
+        min-height: 100vh;
+    }
+
+    &--flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media (--lg) {
+            min-height: 100vh;
+        }
+    }
+}

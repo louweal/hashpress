@@ -1,0 +1,52 @@
+.socials {
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style-type: none;
+        margin-bottom: 1.5rem;
+
+        @media (--lg) {
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+
+        a {
+            display: block;
+            transform-origin: center;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    &-list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        > li {
+            > a {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                margin-left: -0.4rem;
+
+                &:hover {
+                    img {
+                        transform: scale(0.6);
+                    }
+                }
+
+                img {
+                    transform: scale(0.5);
+                    transform-origin: center;
+                    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+                }
+            }
+        }
+    }
+}
