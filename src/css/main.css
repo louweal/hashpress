@@ -1,6 +1,7 @@
 /* Vendor */
 /* @import "../../node_modules/xxx/xxx.css"; */
 @import '../../node_modules/swiper/swiper-bundle.css';
+@import '../../node_modules/aos/dist/aos.css';
 
 /* Base */
 @import 'base/tailwind';
@@ -15,6 +16,7 @@
 @import 'layout/section';
 
 /* Components */
+@import 'components/animation';
 @import 'components/hero';
 @import 'components/btn';
 @import 'components/editor';

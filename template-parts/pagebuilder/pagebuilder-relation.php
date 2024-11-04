@@ -22,7 +22,7 @@ $published_items = array_filter($items, function ($post) {
                 <div class="flex flex-col gap-8 items-start">
 
                     <?php if ($editor) { ?>
-                        <div class="editor lg:w-7/12">
+                        <div class="editor lg:w-7/12" data-aos="fade-up-10">
                             <?php echo $editor; ?>
                         </div>
                     <?php }; //if
@@ -36,11 +36,13 @@ $published_items = array_filter($items, function ($post) {
                     ?>
 
                     <div class="grid lg:grid-cols-<?php echo max(2, count($published_items)); ?> gap-5 w-full">
-                        <?php foreach ($published_items as $post) {
-                            get_template_part('template-parts/card/card');
+                        <?php $i = 0;
+                        foreach ($published_items as $post) {
+                            get_template_part('template-parts/card/card', '', $i);
                         ?>
 
-                        <?php }; //foreach
+                        <?php $i++;
+                        }; //foreach
                         wp_reset_postdata();
                         ?>
                     </div>

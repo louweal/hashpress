@@ -6,9 +6,10 @@
  *
  */
 $terms = get_the_terms(get_the_ID(), 'post-type-tag') ?: [];
+$i = $args ?: 0;
 ?>
 
-<article class="card card--plugin">
+<article class="card card--plugin" data-aos="fade-up-10" data-aos-delay="<?php echo $i * 200; ?>">
     <a class="card__inner" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
         <div class="card__body">
             <div class="editor">

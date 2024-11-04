@@ -81,12 +81,16 @@ if (!$hide) {
                             $num_buttons = count($buttons);
                             if ($num_buttons > 0) {
                             ?>
-                                <div class="hero__buttons">
+                                <div class="hero__buttons" data-aos="fade-up-10" data-aos-delay="1000">
 
                                     <?php
                                     foreach ($buttons as $button) {
                                         $link = $button['link'];
+                                    ?>
+                                        <?php
                                         the_link($link, 'btn btn--outline');
+                                        ?>
+                                    <?php
                                     }
                                     ?>
                                 </div>
