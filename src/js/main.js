@@ -3,6 +3,7 @@ import { initSliders } from './modules/initSliders';
 import { initMobileMenuToggle } from './modules/initMobileMenuToggle';
 import { initSplitting } from './modules/initSplitting';
 import AOS from 'aos';
+import { initAccordion } from './modules/initAccordion';
 
 // import { initPayDemo } from './modules/initPayDemo';
 
@@ -28,5 +29,6 @@ import AOS from 'aos';
     initSliders();
     initMobileMenuToggle();
     initSplitting();
+    initAccordion();
     // initPayDemo();
 })();

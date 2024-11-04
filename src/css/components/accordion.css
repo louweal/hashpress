@@ -1,0 +1,61 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+
+    &__item {
+        border-radius: 0.5rem;
+        background-color: var(--color-background);
+    }
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 1.25rem;
+        font-weight: bold;
+        opacity: 0.8;
+        transition: opacity 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        svg {
+            transform: rotate(180deg);
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+            opacity: 0.8;
+        }
+
+        &.is-active {
+            svg {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    &__content {
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        transition:
+            height 0.3s cubic-bezier(0.2, 0, 0.2, 1),
+            opacity 0.3s 0.1s cubic-bezier(0.2, 0, 0.2, 1);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .editor {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+        }
+    }
+}

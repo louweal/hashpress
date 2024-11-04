@@ -27,6 +27,7 @@
 @import 'components/mobile-menu';
 @import 'components/card';
 @import 'components/index';
+@import 'components/accordion';
 
 /* Demos */
 @import 'components/demo-hashpress-pay';
