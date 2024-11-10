@@ -16,15 +16,15 @@ $field_values = get_sub_field('contact_field-values') ?: get_field('contact_fiel
 <section class="section section--flex" id="contact">
     <div class="container h-full">
         <div class="grid lg:grid-cols-12 gap-5">
-            <div class="lg:col-span-3 lg:col-start-3 flex flex-col justify-center h-full gap-5">
+            <div class="lg:col-span-3 lg:col-start-3 flex flex-col justify-center h-full gap-5" data-aos="fade-up-10">
                 <?php if ($editor) { ?>
-                    <div class="editor" data-aos="fade-up-10">
+                    <div class="editor">
                         <?php echo $editor; ?>
                     </div>
                 <?php }; //if
                 ?>
 
-                <ul class="socials-list" data-aos="fade-up-10" data-aos-delay="500">
+                <ul class="socials-list">
                     <?php foreach ($socials as $social) {
                         $icon = $social['icon'];
                         $label = $social['label'];

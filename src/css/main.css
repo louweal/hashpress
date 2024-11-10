@@ -30,7 +30,7 @@
 @import 'components/accordion';
 
 /* Demos */
-@import 'components/demo-hashpress-pay';
+@import 'components/shortcode-demo';
 
 /* Plugins */
 @import 'plugins/woocommerce';

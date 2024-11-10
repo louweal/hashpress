@@ -15,12 +15,12 @@ function custom_acf_blocks_init()
 
         acf_register_block_type(array(
             'name'              => 'hashpress-pay',
-            'title'             => __('HashPress Pay Demo', 'hashpress'),
-            'render_template'   => 'template-parts/block/demo-hashpress-pay.php',
+            'title'             => __('Shortcode demo', 'hashpress'),
+            'render_template'   => 'template-parts/block/shortcode-demo.php',
             'mode'              => 'edit',
             // 'category'          => 'om-brand-portal',
             'icon'              => 'download',
-            'keywords'          => array('hashpress'),
+            'keywords'          => array('hashpress', 'shortcode', 'demo'),
             // 'example'           => array(
             //     'attributes' => array(
             //         'mode' => 'preview',

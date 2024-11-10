@@ -1,85 +1,117 @@
 .woocommerce {
-    .woocommerce-input-wrapper {
-        input[type='text'],
-        input[type='email'] {
-            background: var(--color-background);
-            border-radius: 0.5rem;
-            height: 2.75rem;
-            padding: 0 1rem;
-        }
+    padding-top: 6rem;
+
+    @media (--lg) {
+        padding-top: 6rem;
     }
+
     #customer_details {
-        .col-1 {
-            width: 100%;
-        }
-        .col-2 {
-            display: none;
-        }
+        display: none;
     }
     .woocommerce-checkout {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        grid-gap: 2rem;
-        gap: 2rem;
-
         .woocommerce-checkout-review-order {
             background: var(--color-background);
             border-radius: 0.5rem;
+            padding: 2rem;
         }
 
         .woocommerce-checkout-payment#payment {
             background: transparent;
-        }
 
-        @media (min-width: 48em) {
-            grid-template-columns: 7fr 5fr;
+            ul.payment_methods {
+                border-bottom: none;
+            }
+
+            #place_order {
+                float: left;
+            }
         }
 
         #payment div.payment_box {
             display: none !important;
-            /* background-color: var(--color-background);
-            color: var(--color-light);
-
-            &::before {
-                border: 1em solid var(--color-background);
-            } */
         }
     }
 
-    .woocommerce-checkout #order_review_heading {
+    /* Hide the default radio button, but keep its functionality */
+    .wc_payment_method input[type='radio'] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        background-color: var(--color-background);
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        transform: translateY(3px);
+    }
+
+    /* When the radio button is selected, add a dot in the center */
+    .wc_payment_method input[type='radio']:checked::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+    }
+
+    button.button.alt:hover {
+        background-color: var(--color-primary);
+        color: var(--color-light);
+    }
+
+    table.shop_table {
+        border: none;
+
+        tfoot th,
+        tfoot td,
+        tbody th,
+        td {
+            border-top: none !important;
+        }
+    }
+
+    #order_review_heading {
+        padding-bottom: 1rem;
+    }
+
+    .woocommerce-terms-and-conditions-wrapper {
         display: none;
-
-        @media (min-width: 48em) {
-            grid-area: 1 / 2 / 1 / 2;
-        }
-    }
-
-    .woocommerce-privacy-policy-text p {
-        font-size: 0.8125rem;
     }
 
     .added_to_cart {
         margin-left: 1rem;
     }
 
-    section.related,
+    /* section.related,
     section.products {
         margin-top: 5rem;
-    }
+    } */
 
-    section.related h2 {
+    /* section.related h2 {
         margin-bottom: 2rem;
-    }
+    } */
 
-    span.onsale {
+    /* span.onsale {
         background-color: var(--color-primary);
         border-radius: 0;
-    }
+    } */
 
     .woocommerce-Tabs-panel--description {
         h2 {
             display: none;
         }
+    }
+}
+
+.wp-block-woocommerce-cart {
+    @media (--lg) {
+        padding-top: 6rem;
     }
 }
