@@ -11,9 +11,9 @@
         width: 100%;
         height: var(--header-height);
 
-        @media (--lg) {
+        /* @media (--lg) {
             height: 0;
-        }
+        } */
     }
 
     &__nav {
