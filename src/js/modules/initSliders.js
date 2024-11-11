@@ -19,29 +19,6 @@ export const initSliders = () => {
             const type = slider.hasAttribute('data-slider') ? slider.getAttribute('data-slider') : 'default';
 
             const options = {
-                // home: {
-                //     modules: [Autoplay, EffectFade],
-                //     direction: 'horizontal',
-                //     effect: 'slide',
-                //     slidesPerView: 'auto',
-                //     spaceBetween: 0,
-                //     speed: 2000,
-                //     touchReleaseOnEdges: true,
-                //     wrapperClass: 'slider__wrapper',
-                //     slideClass: 'slider__slide',
-                //     loop: true,
-                //     autoplay: {
-                //         delay: 4000,
-                //         disableOnInteraction: true,
-                //         pauseOnMouseEnter: true,
-                //     },
-                //     on: {
-                //         init: function () {
-                //             slider.classList.add('slider--init');
-                //         },
-                //     },
-                // },
-
                 portfolio: {
                     modules: [Autoplay, EffectCards, EffectFade],
                     effect: effect,
@@ -62,7 +39,7 @@ export const initSliders = () => {
                 },
             };
 
-            const swiper = new Swiper(slider, options[type]);
+            new Swiper(slider, options[type]);
         });
     }
 };

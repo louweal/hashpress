@@ -5,13 +5,11 @@ import { initSplitting } from './modules/initSplitting';
 import AOS from 'aos';
 import { initAccordion } from './modules/initAccordion';
 
-// import { initPayDemo } from './modules/initPayDemo';
-
 // Main thread
 (async function () {
     'use strict';
 
-    let heroTexts = document.querySelectorAll('.hero .editor p');
+    let heroTexts = document.querySelectorAll('.hero .editor > :not(h1)');
     heroTexts.forEach((heroText) => {
         heroText.classList.add('fade-up-10');
     });
@@ -30,5 +28,4 @@ import { initAccordion } from './modules/initAccordion';
     initMobileMenuToggle();
     initSplitting();
     initAccordion();
-    // initPayDemo();
 })();

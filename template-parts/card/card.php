@@ -25,8 +25,5 @@ $i = $args ?: 0;
                 <p><?php the_excerpt(); ?></p>
             </div>
         </div>
-        <!-- <div class="card__footer">
-            <button>Learn more</button>
-        </div> -->
     </a>
 </article>

@@ -61,6 +61,14 @@
         background-color: var(--color-primary);
     }
 
+    .wc_payment_method label {
+        cursor: pointer;
+        transition: color 0.3s linear;
+        &:hover {
+            color: #fff;
+        }
+    }
+
     button.button.alt:hover {
         background-color: var(--color-primary);
         color: var(--color-light);
@@ -108,10 +116,31 @@
             display: none;
         }
     }
+
+    .woocommerce-form-login-toggle {
+        display: none;
+    }
 }
 
 .wp-block-woocommerce-cart {
     @media (--lg) {
         padding-top: 6rem;
     }
+}
+
+.wp-block-woocommerce-cart-totals-block {
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+    padding: 2rem !important;
+}
+
+.wp-block-woocommerce-filled-cart-block {
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+    padding: 2rem;
+    padding-top: 2rem !important;
+}
+
+.wc-block-components-totals-wrapper {
+    border-top: none;
 }

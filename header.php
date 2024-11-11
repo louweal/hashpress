@@ -48,14 +48,9 @@ function random_color($min, $max)
                 </div>
             </div>
 
-
             <div class="col-span-6 lg:col-span-8 items-center flex lg:justify-center order-1 lg:order-2">
                 <div class="header__logo">
                     <a href="<?php echo home_url(); ?>#top" title="<?php bloginfo('name'); ?>" rel="home" class="js-close-mobile-menu">
-                        <!-- <picture>
-                            <img alt="<?php bloginfo('name'); ?>" src="<?php the_logo(); ?>">
-                        </picture> -->
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="41" fill="none">
                             <path fill="#fff" d="M0 29.901V10.595h2.445v6.307H9.31v-6.307h2.445v19.306H9.31V19.09H2.445v10.811H0Z" />
                             <path fill="#fff" d="m15.156 29.901 8.173-19.95h.043l8.173 19.95h-2.596l-2.274-5.727h-6.757L17.623 29.9h-2.467Zm5.578-7.765h5.126l-1.523-3.818a93.393 93.393 0 0 1-.536-1.437 19.253 19.253 0 0 1-.515-1.695 26.936 26.936 0 0 1-.493 1.695 31.11 31.11 0 0 1-.536 1.437l-1.523 3.818Z" />

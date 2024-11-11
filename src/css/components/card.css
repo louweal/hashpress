@@ -3,15 +3,8 @@
     background-color: var(--color-background);
     color: var(--color-light);
     transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
-    /* border: 1px solid rgba(255, 255, 255, 0.5); */
-    opacity: 0.75;
     border-radius: 0.5rem;
     overflow: hidden;
-
-    &:hover {
-        border-color: var(--color-light);
-        opacity: 1;
-    }
 
     &__inner {
         height: 100%;
@@ -43,27 +36,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid var(--color-light);
 
         &:hover {
-            /* background-color: var(--color-dark); */
             svg {
-                transform: scale(1) rotate(180deg);
+                filter: invert(100%);
             }
         }
 
         svg {
-            filter: invert(100%);
+            filter: var(--filter-body);
             transform: scale(0.8);
-            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+            transition: filter 0.3s cubic-bezier(0.2, 0, 0.2, 1);
         }
     }
-
-    /* &__footer {
-        display: flex;
-        gap: 1.25rem;
-        padding: 1.25rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        background-color: var(--color-background);
-    } */
 }

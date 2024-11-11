@@ -36,7 +36,7 @@
     .gform_wrapper.gravity-theme {
         .gfield_description {
             padding-top: 2px;
-            border: 1px solid gold;
+            /* border: 1px solid gold; */
         }
 
         .gfield_error [aria-invalid='true'] {

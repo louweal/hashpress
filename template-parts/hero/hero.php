@@ -13,34 +13,8 @@ $buttons = get_field('hero_repeater') ?: [];
 $cards = get_field('hero_relationship') ?: [];
 $hide = get_field('hero_hide') ?: false;
 
-
-
 $col_1_width = has_post_thumbnail() ? 'lg:col-span-4' : 'lg:col-span-6';
 
-$query = array();
-if ($post_type == 'service') {
-    $args = array(
-        'post_type'         => 'service',
-        'post_status'       => array('publish'),
-        'posts_per_page'    => -1,
-        'orderby' => 'menu_order',
-        'order' => 'ASC',
-    );
-
-    $query = new WP_Query($args);
-}
-
-if ($post_type == 'plugin') {
-    $args = array(
-        'post_type'         => 'plugin',
-        'post_status'       => array('publish'),
-        'posts_per_page'    => -1,
-        'orderby' => 'menu_order',
-        'order' => 'ASC',
-    );
-
-    $query = new WP_Query($args);
-}
 
 if (!$hide) {
 ?>
@@ -50,22 +24,6 @@ if (!$hide) {
                 <div class="grid lg:grid-cols-12 w-full gap-5">
                     <div class="lg:col-start-3 <?php echo $col_1_width; ?> flex flex-col items-start self-center">
 
-                        <?php
-                        if ($query && $query->have_posts() && 1 == 2) { ?>
-                            <div class="hero__nav">
-
-                                <?php
-                                while ($query->have_posts()) {
-                                    $query->the_post();
-                                    $active_class = get_the_ID() == $post_id ? 'is-active' : '';
-                                    echo '<a class="hero__nav__item ' . $active_class . '" href="' . get_permalink() . '">' . get_the_title() . '</a>';
-                                }
-                                wp_reset_postdata();
-                                ?>
-                            </div>
-
-                        <?php
-                        } ?>
 
                         <div class="flex gap-8 flex-col">
                             <?php if ($title) { ?>
@@ -74,8 +32,6 @@ if (!$hide) {
                                 </div>
                             <?php }; //if
                             ?>
-
-
 
                             <?php
                             $num_buttons = count($buttons);
@@ -98,11 +54,8 @@ if (!$hide) {
                             <?php
                             }
                             ?>
-
-
                         </div>
                     </div>
-
 
                     <div class="lg:col-span-4 lg:col-start-8">
                         <?php if (has_post_thumbnail()) { ?>
@@ -131,7 +84,6 @@ if (!$hide) {
                     </div>
                 <?php }; //if
                 ?>
-
             </div>
         </div>
     </header>

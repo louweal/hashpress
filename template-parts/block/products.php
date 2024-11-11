@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Template:			demo-hashpress-pay.php
- * Description:			Demo HashPress Pay block
+ * Template:			products.php
+ * Description:			Products Gutenberg block
  */
 
-if (isset($block['data']['preview'])) {
-    get_preview($block['data']['preview']);
-    return;
-}
+// if (isset($block['data']['preview'])) {
+//     get_preview($block['data']['preview']);
+//     return;
+// }
 
 $items = get_field('products_relationship') ?: [];
 ?>

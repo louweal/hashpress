@@ -24,10 +24,6 @@ body {
     justify-content: space-between;
     font-size: 1.125rem;
     overflow-x: hidden;
-
-    @media (--1024) {
-        /* padding-top: 0; */
-    }
 }
 
 body.is-mobile-menu-open {

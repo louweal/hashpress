@@ -10,7 +10,6 @@ get_header();
 
 $col_width = is_cart() || is_checkout() || is_account_page() ? '8' : '6';
 
-
 ?>
 
 <main id="site-main" class="main">
@@ -18,12 +17,9 @@ $col_width = is_cart() || is_checkout() || is_account_page() ? '8' : '6';
     <?php if (have_posts()) {
         while (have_posts()) {
             the_post();
-
     ?>
             <?php
-            // if (!is_cart() && !is_checkout() && !is_account_page()) {
             get_hero();
-            // }
             ?>
 
             <?php if (!empty(get_the_content())) { ?>

@@ -103,21 +103,13 @@ function theme_scripts()
     wp_deregister_script('wp-embed');
     // wp_deregister_script( 'jquery' );
 
-
-
     /**
      * jQuery
      * @link	http://api.jquery.com/
      */
-    wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js', false, '3.5.1', false);
+    // wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js', false, '3.5.1', false);
     // wp_enqueue_script( 'jquery' );
 
-    /**
-     * Swiper
-     * @link	http://idangero.us/swiper/api/
-     */
-    // wp_register_script( 'swiper', '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/js/swiper.min.js', false, '4.2.6', true );
-    // wp_enqueue_script( 'swiper' );
 
     /**
      * Script

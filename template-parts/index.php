@@ -9,8 +9,6 @@ preg_match_all($pattern, $content, $matches, PREG_SET_ORDER);
     <div class="index js-index">
         <h4><?php _e('Content', 'control'); ?></h4>
 
-        <?php //echo print_flat_list($matches);
-        ?>
         <?php echo print_nested_list($matches); ?>
     </div>
 <?php } ?>
