@@ -11,7 +11,6 @@
 }
 
 .fade-up-10 {
-    /* display: block; */
     animation: fade-up-10 1s 0.5s cubic-bezier(0.2, 0, 0.1, 1) both;
     will-change: transform, opacity;
     opacity: 0;

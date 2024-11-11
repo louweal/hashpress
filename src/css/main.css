@@ -1,5 +1,4 @@
 /* Vendor */
-/* @import "../../node_modules/xxx/xxx.css"; */
 @import '../../node_modules/swiper/swiper-bundle.css';
 @import '../../node_modules/aos/dist/aos.css';
 
@@ -34,5 +33,4 @@
 
 /* Plugins */
 @import 'plugins/woocommerce';
-/* @import 'plugins/hederapay'; */
 /* @import 'plugins/hashpress-reviews'; */

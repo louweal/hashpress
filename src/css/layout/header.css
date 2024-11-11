@@ -10,7 +10,6 @@
     justify-content: space-between;
     align-items: center;
     height: var(--header-height);
-    /* text-transform: uppercase; */
     font-weight: 700;
     font-family: var(--font-heading);
     font-size: 0.75rem;
@@ -32,23 +31,6 @@
             transform-box: fill-box;
             transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
         }
-    }
-
-    /* &__menu {
-        ul {
-            list-style-type: none;
-            display: flex;
-            gap: 1rem;
-        }
-    } */
-}
-
-@keyframes growShrink {
-    70% {
-        transform: scale(0.96);
-    }
-    100% {
-        transform: scale(1);
     }
 }
 

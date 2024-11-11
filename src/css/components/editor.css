@@ -32,16 +32,6 @@
         }
     }
 
-    .subheading {
-        font-size: 0.625rem;
-        /* text-transform: uppercase; */
-        color: var(--color-primary);
-        letter-spacing: 1px;
-        font-family: var(--font-primary);
-        display: block;
-        margin: 0 0 1rem 0;
-    }
-
     &--footer {
         color: #a6a6a6;
         ul {

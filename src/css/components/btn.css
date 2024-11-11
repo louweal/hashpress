@@ -2,9 +2,6 @@
 .wp-block-button__link,
 .gform_button,
 .woocommerce button.button.alt,
-/* .wc-block-cart__submit-button, */
-/* .wp-block-woocommerce-mini-cart-cart-button-block.wc-block-mini-cart__footer-cart.outlined, */
-/* .wp-block-woocommerce-mini-cart-checkout-button-block.wc-block-mini-cart__footer-checkout, */
 .wc-block-components-button:not(.is-link),
 a.button.wc-forward {
     display: inline-flex;
@@ -24,7 +21,6 @@ a.button.wc-forward {
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 2px;
-    /* text-transform: uppercase; */
     font-family: var(--font-heading);
     color: var(--color-body);
     border-radius: 0px;
@@ -34,9 +30,7 @@ a.button.wc-forward {
     }
 
     &:hover {
-        /* background-color: var(--color-dark); */
         color: var(--color-light);
-        /* opacity: 1; */
     }
 }
 
@@ -48,7 +42,6 @@ a.button.wc-forward {
 
     &:hover {
         background-color: transparent;
-        /* color: var(--color-dark); */
         opacity: 1;
     }
 }
