@@ -117,3 +117,17 @@
     border-radius: 0;
     height: 2.75rem;
 } */
+
+input[type='number'] {
+    background-color: var(--color-background);
+    height: 2.5rem;
+    padding: 0 1rem;
+    outline: none;
+    outline: none;
+    transition: background-color 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+
+    &:hover,
+    &:active {
+        background-color: rgba(231, 210, 207, 0.12);
+    }
+}
