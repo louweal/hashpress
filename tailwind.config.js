@@ -6,6 +6,7 @@ module.exports = {
         'footer.php',
         'index.php',
         'singular.php',
+        'woocommerce.php',
         '404.php',
         './template-parts/*.php',
         './template-parts/*/*.php',

@@ -24,6 +24,7 @@ $templates = array(
     'lib/body.php',                // wp_body_open functions
     'lib/widgets.php',            // Widget registration
     'lib/plugins.php',            // Plugins
+    'lib/shortcodes.php',        // Shortcodes
 );
 
 /**

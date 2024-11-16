@@ -29,7 +29,7 @@
 @import 'components/accordion';
 
 /* Demos */
-@import 'components/shortcode-demo';
+@import 'components/block';
 
 /* Plugins */
 @import 'plugins/woocommerce';

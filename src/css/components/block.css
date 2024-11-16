@@ -1,4 +1,4 @@
-.shortcode-demo {
+.block {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -9,6 +9,11 @@
 
     p + & {
         margin-top: -1rem;
+    }
+
+    li {
+        list-style-type: none;
+        line-height: 1.5;
     }
 
     &__code {

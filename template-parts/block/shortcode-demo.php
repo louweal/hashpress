@@ -14,9 +14,19 @@ $shortcode = get_field('shortcode');
 
 ?>
 
-<div class="shortcode-demo" data-aos="fade-up-10">
-    <div class="shortcode-demo__code">&lbrack;<?php echo esc_html($shortcode); ?>&rbrack;</div>
+<div class="block" data-aos="fade-up-10">
+    <div class="block__code">&lbrack;<?php echo esc_html($shortcode); ?>&rbrack;</div>
 
     <h4>Output:</h4>
     <div><?php echo do_shortcode('[' . $shortcode . ']'); ?></div>
+
+    <?php
+    if (str_contains($shortcode, 'store')) {
+        global $post;
+        if ($post) {
+            $post_id = $post->ID;
+            var_dump(get_post_meta($post_id, '_transaction_ids', true));
+        }
+    }
+    ?>
 </div>

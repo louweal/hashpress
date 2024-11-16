@@ -1,10 +1,10 @@
 .section {
-    padding: 3.125rem 0;
+    padding: 2rem 0;
     position: relative;
 
     @media (--lg) {
         padding: 4.25rem 0;
-        min-height: 100vh;
+        /* min-height: calc(100vh - 2.25rem); */
     }
 
     &--flex {
@@ -13,7 +13,7 @@
         justify-content: center;
 
         @media (--lg) {
-            min-height: 100vh;
+            min-height: calc(100vh - 2.25rem);
         }
     }
 }

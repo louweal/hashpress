@@ -31,7 +31,7 @@ $slides = get_sub_field('text-slider_slider') ?: [];
                 ?>
             </div>
             <?php if ($slides) { ?>
-                <div class="col-span-1 lg:col-span-7 lg:col-start-7 flex items-center order-1 lg:order-2">
+                <div class="col-span-1 lg:col-span-8 lg:col-start-6 flex items-center order-1 lg:order-2">
                     <div class="slider slider--portfolio swiper js-slider" data-slider="portfolio">
                         <div class="slider__wrapper swiper-wrapper">
                             <?php

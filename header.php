@@ -35,6 +35,23 @@ function random_color($min, $max)
     <?php
     wp_body_open(); ?>
 
+
+    <div class="bg">
+        <?php for ($i = 0; $i < 50; $i++) {
+            $random_x_pos = rand(4, 100) . "%";
+            $random_y_pos = rand(2, 98) . "%";
+            $random_size = 2 + rand(2, 6) . "px";
+            $random_delay = rand(0, 15) . "s";
+            $random_gradient = "radial-gradient( circle, " . random_rgb(0.25) . " 0%, " . random_rgb(0.5) . " 100%)";
+        ?>
+            <div class="sparkle" style="
+      background: <?php echo $random_gradient; ?>; left: <?php echo $random_x_pos; ?>; top: <?php echo $random_y_pos; ?>; width: <?php echo $random_size; ?>; height: <?php echo $random_size; ?>; animation-delay: <?php echo $random_delay; ?>;"></div>
+        <?php }; //foreach
+        ?>
+
+    </div>
+
+
     <header id="site-header" class="header">
 
         <div class="grid grid-cols-12 w-full">
@@ -76,20 +93,7 @@ function random_color($min, $max)
         </div>
     </header>
 
-    <div class="bg">
-        <?php for ($i = 0; $i < 50; $i++) {
-            $random_x_pos = rand(4, 100) . "%";
-            $random_y_pos = rand(2, 98) . "%";
-            $random_size = 2 + rand(2, 6) . "px";
-            $random_delay = rand(0, 15) . "s";
-            $random_gradient = "radial-gradient( circle, " . random_rgb(0.25) . " 0%, " . random_rgb(0.5) . " 100%)";
-        ?>
-            <div class="sparkle" style="
-      background: <?php echo $random_gradient; ?>; left: <?php echo $random_x_pos; ?>; top: <?php echo $random_y_pos; ?>; width: <?php echo $random_size; ?>; height: <?php echo $random_size; ?>; animation-delay: <?php echo $random_delay; ?>;"></div>
-        <?php }; //foreach
-        ?>
 
-    </div>
 
 
     <div class="mobile-menu">
