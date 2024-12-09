@@ -1,21 +1,50 @@
-.realviews-review__icon {
-    background-color: var(--color-primary);
-}
+.hashpress-reviews {
+    &-modal {
+        &__bg {
+            background-color: #2b232b;
+            background-color: var(--color-dark);
+            opacity: 0.99;
+        }
 
-.realviews-write-review {
-    background-color: var(--color-secondary);
+        &__inner {
+            background-color: var(--color-background);
+            border-radius: 0.5rem;
+            width: min(calc(100vw - 2rem), 50rem);
+            -ms-overflow-style: none;
+            scrollbar-width: none;
 
-    &:hover {
-        background-color: var(--color-primary);
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            input[type='text'] {
+                height: 2.75rem;
+            }
+
+            input[type='text'],
+            textarea {
+                padding: 1rem;
+                border-radius: 0.5rem;
+                background-color: var(--color-background);
+            }
+        }
+
+        &__header {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        &__close {
+            svg {
+                filter: invert(100%);
+            }
+        }
     }
-}
 
-.realviews-review__username {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
-.realviews-review__date1,
-.realviews-review__date2 {
-    font-size: 0.8125rem;
+    &-stars {
+        &__star {
+            filter: invert(100%);
+            opacity: 0.5;
+        }
+    }
 }

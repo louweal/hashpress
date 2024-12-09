@@ -27,10 +27,11 @@
 @import 'components/card';
 @import 'components/index';
 @import 'components/accordion';
+@import 'components/leaderboard';
 
 /* Demos */
 @import 'components/block';
 
 /* Plugins */
 @import 'plugins/woocommerce';
-/* @import 'plugins/hashpress-reviews'; */
+@import 'plugins/hashpress-reviews';

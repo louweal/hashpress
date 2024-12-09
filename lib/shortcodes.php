@@ -10,12 +10,12 @@ function stored_transactions_function($atts)
         $post_id = $post->ID;
 
         $transactions = get_post_meta($post_id, '_transaction_ids', true);
-        echo '<ul>';
+        $output .= '<ul>';
         foreach ($transactions as $transaction) {
             // todo, right network
             $output .= '<li><a href="https://hashscan.io/testnet/transaction/' . $transaction . '" target="_blank">' . $transaction . '</a></li>';
         }
-        echo '</ul>';
+        $output .= '</ul>';
     }
 
     return '<div class="block__code">' . $output . '</div>';

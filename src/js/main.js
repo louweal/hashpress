@@ -4,6 +4,7 @@ import { initMobileMenuToggle } from './modules/initMobileMenuToggle';
 import { initSplitting } from './modules/initSplitting';
 import AOS from 'aos';
 import { initAccordion } from './modules/initAccordion';
+import { initLeaderboard } from './modules/initLeaderboard';
 
 // Main thread
 (async function () {
@@ -28,4 +29,5 @@ import { initAccordion } from './modules/initAccordion';
     initMobileMenuToggle();
     initSplitting();
     initAccordion();
+    initLeaderboard();
 })();

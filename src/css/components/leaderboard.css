@@ -1,0 +1,12 @@
+.leaderboard {
+    padding: 2rem;
+    background-color: var(--color-background);
+    border-radius: 0.5rem;
+
+    table {
+        th,
+        td {
+            padding: 1rem;
+        }
+    }
+}

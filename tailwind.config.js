@@ -10,6 +10,7 @@ module.exports = {
         '404.php',
         './template-parts/*.php',
         './template-parts/*/*.php',
+        './templates/*.php',
         './lib/ajax.php',
     ],
     safelist: ['lg:grid-cols-2', 'lg:grid-cols-3', 'lg:col-span-6', 'lg:col-span-8', 'lg:col-span-3'],

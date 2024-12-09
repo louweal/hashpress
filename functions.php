@@ -25,6 +25,7 @@ $templates = array(
     'lib/widgets.php',            // Widget registration
     'lib/plugins.php',            // Plugins
     'lib/shortcodes.php',        // Shortcodes
+    'lib/leaderboard/main.php',        // Leaderboard
 );
 
 /**

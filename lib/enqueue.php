@@ -118,7 +118,7 @@ function theme_scripts()
      * interactions and DOM modifications
      */
     wp_register_script('main', get_template_directory_uri() . '/dist/main.bundle.js', false, false, true);
-    wp_localize_script('main', 'hashpress', array(
+    wp_localize_script('main', 'hashpressTheme', array(
         // 'ajax'             => admin_url('admin-ajax.php'),
         'theme'         => get_template_directory_uri(),
         'post'            => array(
@@ -128,7 +128,11 @@ function theme_scripts()
             'template'        => basename(get_page_template())
         ),
         // 'rest'            => esc_url(get_rest_url()),
-        // 'nonce'            => wp_create_nonce('wp_rest'),
+        'setLeaderboardDataUrl' => rest_url('hedera_leaderboard/v1/set_data'),
+        'getLeaderboardDataUrl' => rest_url('hedera_leaderboard/v1/get_data'),
+        'nonce'            => wp_create_nonce('wp_rest'),
     ));
+
+
     wp_enqueue_script('main');
 }
