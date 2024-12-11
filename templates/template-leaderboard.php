@@ -36,38 +36,49 @@ $accounts = json_decode($leaderboard_data, true);
 
                     <div class="leaderboard" data-fetched-at="<?php echo $leaderboard_fetched_at; ?>">
 
-                        <span class="text-sm opacity-50">Last updated: <?php echo $fetch_date->format('Y-m-d H:i:s') . " UTC"; ?></span>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Account</th>
-                                    <th>Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <?php if ($accounts) { ?>
+                            <span class="text-sm opacity-50">Last updated: <?php echo $fetch_date->format('Y-m-d H:i:s') . " UTC"; ?></span>
+                            <div class="leaderboard__table">
+                                <div class="leaderboard__table__tr is-active">
+                                    <div></div>
+                                    <div>Account</div>
+                                    <div>Balance</div>
+                                </div>
                                 <?php
-
                                 for ($i = 1; $i < count($accounts); $i++) {
                                     $account = $accounts[$i];
+                                    $active_class = $i <= 25 ? "is-active" : "";
                                 ?>
-                                    <tr>
-                                        <td><?php echo $i; ?></td>
-                                        <td><?php echo $account['account']; ?></td>
-                                        <td><?php echo intval($account['balance'] / 1e8); ?></td>
-                                    </tr>
+                                    <div class="leaderboard__table__tr <?php echo $active_class; ?>">
+                                        <div><?php echo $i; ?></div>
+                                        <div><?php echo $account['account']; ?></div>
+                                        <div><?php echo intval($account['balance'] / 1e8); ?></div>
+                                    </div>
 
                                 <?php
                                 }; //foreach
                                 ?>
-                            </tbody>
-                        </table>
+                                </tbody>
+                                </table>
 
+                                <?php if (count($accounts) > 25) { ?>
+                                    <div class="btn load-more">Load more</div>
+                                <?php }; //if 
+                                ?>
+                            <?php } else {
+                            ?>
+                                <div class="leaderboard__progress">
+                                    <div class="bar"></div>
+                                </div>
+                            <?php
+                            echo "Fetching data...";
+                        } ?>
+
+                            </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
     </section>
 
     <?php get_template_part('/template-parts/pagebuilder/pagebuilder'); ?>

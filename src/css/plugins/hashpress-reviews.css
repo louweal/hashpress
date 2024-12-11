@@ -1,9 +1,8 @@
 .hashpress-reviews {
     &-modal {
         &__bg {
-            background-color: #2b232b;
-            background-color: var(--color-dark);
-            opacity: 0.99;
+            background: linear-gradient(180deg, #000, var(--color-dark));
+            opacity: 1;
         }
 
         &__inner {

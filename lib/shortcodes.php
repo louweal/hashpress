@@ -9,7 +9,9 @@ function stored_transactions_function($atts)
     if ($post) {
         $post_id = $post->ID;
 
-        $transactions = get_post_meta($post_id, '_transaction_ids', true);
+        // $transactions = get_post_meta($post_id, '_transaction_ids', true);
+        $transactions = get_option("hashpress_pay_" . $post_id);
+
         $output .= '<ul>';
         foreach ($transactions as $transaction) {
             // todo, right network

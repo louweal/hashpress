@@ -24,6 +24,7 @@ function hashpress_theme_validate_nonce(WP_REST_Request $request)
 
 function hashpress_theme_set_leaderboard_data(WP_REST_Request $request)
 {
+
     $data = $request->get_param('data');
     $fetched_at = $request->get_param('fetchedAt');
 
@@ -35,8 +36,7 @@ function hashpress_theme_set_leaderboard_data(WP_REST_Request $request)
         return new WP_Error('missing_fetched_at', 'FetchedAt is required', ['status' => 400]);
     }
 
-    // $option_name = 'leaderboard_data';
-    // $saved = update_option($option_name, $data);
+    delete_old_leaderboard_transients();
 
     $saved_data = set_transient("leaderboard_data", $data, 12 * HOUR_IN_SECONDS);
     if (!$saved_data) {
@@ -50,6 +50,26 @@ function hashpress_theme_set_leaderboard_data(WP_REST_Request $request)
     }
 
     return rest_ensure_response(['success' => true]);
+}
+
+function delete_old_leaderboard_transients()
+{
+    global $wpdb;
+    $prefix = 'leaderboard_data_';
+
+    // Fetch all transients matching the pattern
+    $transient_keys = $wpdb->get_col(
+        $wpdb->prepare(
+            "SELECT option_name FROM $wpdb->options WHERE option_name LIKE %s",
+            '_transient_' . $prefix . '%'
+        )
+    );
+
+    // Loop through and delete each transient
+    foreach ($transient_keys as $key) {
+        $transient_name = str_replace('_transient_', '', $key);
+        delete_transient($transient_name);
+    }
 }
 
 function hashpress_theme_get_leaderboard_data()

@@ -57,7 +57,7 @@ function random_color($min, $max)
         <div class="grid grid-cols-12 w-full">
             <div class="col-span-6 lg:col-span-2 flex items-center justify-end lg:justify-start order-2 lg:order-1">
                 <div class="header__toggle">
-                    <button class="toggle js-toggle-mobile-menu" title="<?php _e('Toggle menu', 'control'); ?>">
+                    <button class="toggle js-toggle-mobile-menu" title="<?php _e('Toggle menu', 'hashpress'); ?>">
                         <span class="toggle__inner">
                             <span></span><span></span>
                         </span>

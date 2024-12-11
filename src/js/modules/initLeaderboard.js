@@ -4,9 +4,59 @@ export const initLeaderboard = async () => {
 
     init(leaderboard);
 
+    let searchForm = document.querySelector('.leaderboard__search-form');
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+    }
+
     let searchInput = document.querySelector('.leaderboard__search');
     let searchResults = document.querySelector('.leaderboard__search-results');
     if (!searchInput) return;
+
+    let loadMoreButton = leaderboard.querySelector('.btn.load-more');
+    if (loadMoreButton) {
+        const items = document.querySelectorAll('.leaderboard__table__tr');
+
+        let data;
+
+        loadMoreButton.addEventListener('click', async () => {
+            let start_index = +loadMoreButton.dataset.start;
+            const table = document.querySelector('.leaderboard__table');
+
+            if (!data) {
+                data = await getLeaderboardData();
+                data = JSON.parse(data);
+            }
+
+            for (let i = start_index; i < Math.min(data.length, start_index + 25); i++) {
+                const tr = document.createElement('div');
+                tr.className = 'leaderboard__table__tr';
+
+                const td1 = document.createElement('div');
+                td1.textContent = i + 1;
+                tr.appendChild(td1);
+                const td2 = document.createElement('div');
+                td2.textContent = data[i].account;
+                tr.appendChild(td2);
+                const td3 = document.createElement('div');
+                td3.textContent = Math.round(data[i].balance / 1e8);
+                tr.appendChild(td3);
+
+                table.appendChild(tr);
+                tr.classList.add('is-active');
+            }
+
+            // Hide the button if all items are visible
+            if (start_index + 25 > data.length) {
+                loadMoreButton.style.display = 'none';
+            } else {
+                loadMoreButton.dataset.start = start_index + 25;
+            }
+        });
+    }
 
     let data = undefined;
 
@@ -28,7 +78,7 @@ export const initLeaderboard = async () => {
                     'Account ' +
                     accountToFind +
                     ' has ranking ' +
-                    i +
+                    (i + 1) +
                     ' and a balance of ' +
                     Math.round(foundAccount.balance / 1e8) +
                     ' hbar.';
@@ -61,9 +111,22 @@ async function init(leaderboard) {
     data = data.sort((a, b) => (a.balance > b.balance ? -1 : 1));
 
     sendDataToServer(data);
+
+    // location.reload();
+    window.location.href = window.location.href.split('?')[0] + '?refresh=' + new Date().getTime();
 }
 
-async function fetchBalances(path) {
+function updateProgress(progress) {
+    let progressElem = document.querySelector('.leaderboard__progress');
+
+    if (progressElem) {
+        progressElem.style.width = (100 * progress) / 561 + '%';
+    }
+}
+
+async function fetchBalances(path, page = 0) {
+    updateProgress(page);
+
     let min = 100000 * 1e8;
     let domain = 'https://mainnet.mirrornode.hedera.com';
 
@@ -99,7 +162,7 @@ async function fetchBalances(path) {
             let nextpage = data['links']['next'];
             if (nextpage !== null) {
                 console.log(nextpage);
-                res2 = await fetchBalances(nextpage);
+                res2 = await fetchBalances(nextpage, page + 1);
             }
         })
         .catch((error) => {
@@ -109,27 +172,31 @@ async function fetchBalances(path) {
     return res.concat(res2);
 }
 
-function sendDataToServer(data) {
-    fetch(hashpressTheme.setLeaderboardDataUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-WP-Nonce': hashpressTheme.nonce,
-        },
-        body: JSON.stringify({
-            data: JSON.stringify(data),
-            fetchedAt: new Date().toISOString(),
-        }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                console.log('Successfully updated data');
-            } else {
-                console.error('Failed to update transaction IDs');
-            }
-        })
-        .catch((error) => console.error('Error:', error));
+async function sendDataToServer(data, page) {
+    try {
+        const response = await fetch(hashpressTheme.setLeaderboardDataUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': hashpressTheme.nonce,
+            },
+            body: JSON.stringify({
+                data: JSON.stringify(data),
+                page: page,
+                fetchedAt: new Date().toISOString(),
+            }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            console.log('Successfully updated data');
+        } else {
+            console.error('Failed to update transaction IDs');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 async function getLeaderboardData() {

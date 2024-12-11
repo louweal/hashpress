@@ -15,7 +15,6 @@ $hide = get_field('hero_hide') ?: false;
 
 $col_1_width = has_post_thumbnail() ? 'lg:col-span-4' : 'lg:col-span-6';
 
-
 if (!$hide) {
 ?>
     <header class="hero">
@@ -72,7 +71,7 @@ if (!$hide) {
                     <div class="grid grid-cols-1 lg:grid-cols-12">
                         <div class="col-span-1 lg:col-span-8 lg:col-start-3 flex flex-col md:flex-row gap-5">
                             <?php foreach ($cards as $post) { ?>
-                                <div class="flex-1">
+                                <div class="flex-1 h-full">
                                     <?php
                                     get_template_part('template-parts/card/card');
                                     ?>
