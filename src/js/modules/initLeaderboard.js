@@ -205,7 +205,7 @@ async function getLeaderboardData() {
         const response = await fetch(`${hashpressTheme.getLeaderboardDataUrl}`, {
             method: 'GET',
             headers: {
-                'X-WP-Nonce': phpData.nonce,
+                'X-WP-Nonce': hashpressTheme.nonce,
             },
         });
 
