@@ -47,3 +47,33 @@
         }
     }
 }
+section.hashpress-reviews-section {
+    /* reviews section */
+    .hashpress-reviews-review {
+        border: none;
+        background-color: var(--color-background);
+        border-radius: 0.5rem;
+
+        svg {
+            filter: invert(100%);
+            opacity: 0.5;
+        }
+    }
+
+    .hashpress-reviews-review__icon {
+        background-color: var(--color-primary);
+    }
+
+    .hashpress-reviews-review__star {
+        filter: invert(100%);
+        opacity: 0.5;
+    }
+
+    .hashpress-reviews-review__date1,
+    .hashpress-reviews-review__date2 {
+        time {
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+    }
+}
