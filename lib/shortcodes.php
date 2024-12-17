@@ -25,10 +25,10 @@ function stored_transactions_function($atts)
     return '<div class="block__code">' . $output . '</div>';
 }
 
-function custom_code_after_product_title()
-{
-    echo "<div class='block'> <h3>Stored transactions</h3>";
-    echo do_shortcode('[stored_transactions]');
-    echo '</div>';
-}
-add_action('woocommerce_after_single_product_summary', 'custom_code_after_product_title', 20);
+// function custom_code_after_product_title()
+// {
+//     echo "<div class='block'> <h3>Stored transactions</h3>";
+//     echo do_shortcode('[stored_transactions]');
+//     echo '</div>';
+// }
+// add_action('woocommerce_after_single_product_summary', 'custom_code_after_product_title', 20);

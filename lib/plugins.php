@@ -22,11 +22,19 @@ function custom_acf_blocks_init()
         ));
         acf_register_block_type(array(
             'name'              => 'products',
-            'title'             => __('Products', 'hashpress'),
-            'render_template'   => 'template-parts/block/products.php',
+            'title'             => __('Products - With add to cart', 'hashpress'),
+            'render_template'   => 'template-parts/block/products-add.php',
             'mode'              => 'edit',
             'icon'              => 'store',
-            'keywords'          => array('hashpress', 'products', 'woocommerce'),
+            'keywords'          => array('hashpress', 'products', 'woocommerce', 'add to cart'),
+        ));
+        acf_register_block_type(array(
+            'name'              => 'products-view',
+            'title'             => __('Products - View', 'hashpress'),
+            'render_template'   => 'template-parts/block/products-view.php',
+            'mode'              => 'edit',
+            'icon'              => 'store',
+            'keywords'          => array('hashpress', 'products', 'woocommerce', 'view'),
         ));
     }
 }
