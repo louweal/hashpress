@@ -97,6 +97,10 @@ function hashpress_leaderboard_cron_schedule()
 function hashpress_leaderboard_fetch_event()
 {
     $balances = fetch_balances('/api/v1/balances');
+    // sort balances
+    usort($balances, function ($a, $b) {
+        return $b['balance'] <=> $a['balance'];
+    });
 
     if ($balances) {
         set_transient("leaderboard_data", json_encode($balances), 12 * HOUR_IN_SECONDS);
@@ -107,7 +111,7 @@ function hashpress_leaderboard_fetch_event()
 
 function fetch_balances($path, $page = 0)
 {
-    $min = 100000 * 1e8;
+    $min = 400000 * 1e8;
     $domain = 'https://mainnet.mirrornode.hedera.com';
     $query = $domain . $path;
 
@@ -125,6 +129,7 @@ function fetch_balances($path, $page = 0)
         curl_setopt($ch, CURLOPT_URL, $query);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 120);  // Timeout for the entire request (in seconds)
 
         // Execute the cURL request
         $body = curl_exec($ch);

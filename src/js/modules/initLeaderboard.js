@@ -117,7 +117,7 @@ export const initLeaderboard = async () => {
 // }
 
 async function getLeaderboardData() {
-    console.log('get data');
+    // console.log('get data');
     try {
         const response = await fetch(`${hashpressTheme.getLeaderboardDataUrl}`, {
             method: 'GET',
