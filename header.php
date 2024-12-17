@@ -5,9 +5,6 @@
  * Description:			The template for displaying the header
  */
 
-if (function_exists('opcache_reset')) {
-    opcache_reset();
-}
 
 function random_rgb($opacity)
 {

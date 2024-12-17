@@ -11,7 +11,7 @@ global $post;
 $product = wc_get_product($post->ID);
 // debug($args['link']);
 $has_link = $args['link'] == true;
-$href = $has_link ? 'a href="' . the_permalink() . '"' : null;
+$href = $has_link ? 'a href="' . get_the_permalink() . '"' : null;
 // $component = $has_link ? 'a' : 'div';
 ?>
 
@@ -32,8 +32,7 @@ $href = $has_link ? 'a href="' . the_permalink() . '"' : null;
 
             </div>
 
-            <?php echo $product->get_price_html()
-            ?>
+            <?php echo $product->get_price_html() ?>
             <?php if ($has_link) { ?>
                 <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" class="button add_to_cart_button" data-product_id="<?php echo esc_attr($post->ID); ?>">
                     <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +42,9 @@ $href = $has_link ? 'a href="' . the_permalink() . '"' : null;
             <?php } else { ?>
                 <a href="<?php the_permalink(); ?>" class="button add_to_cart_button" data-product_id="<?php echo esc_attr($post->ID); ?>">
                     >
+                    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 12a.75.75 0 0 1 .75-.75h17.69l-4.721-4.719a.751.751 0 0 1 1.062-1.062l6 6a.75.75 0 0 1 0 1.062l-6 6a.75.75 0 0 1-1.062-1.062l4.72-4.719H2.25A.75.75 0 0 1 1.5 12Z" fill="#000" />
+                    </svg>
                 </a>
             <?php } ?>
         </div>
