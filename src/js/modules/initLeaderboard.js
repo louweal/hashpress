@@ -2,8 +2,6 @@ export const initLeaderboard = async () => {
     let leaderboard = document.querySelector('.leaderboard');
     if (!leaderboard) return;
 
-    init(leaderboard);
-
     let searchForm = document.querySelector('.leaderboard__search-form');
 
     if (searchForm) {
@@ -18,8 +16,6 @@ export const initLeaderboard = async () => {
 
     let loadMoreButton = leaderboard.querySelector('.btn.load-more');
     if (loadMoreButton) {
-        const items = document.querySelectorAll('.leaderboard__table__tr');
-
         let data;
 
         loadMoreButton.addEventListener('click', async () => {
@@ -93,111 +89,32 @@ export const initLeaderboard = async () => {
     });
 };
 
-async function init(leaderboard) {
-    let lastFetchDateString = leaderboard.dataset.fetchedAt;
+// async function sendDataToServer(data, page) {
+//     try {
+//         const response = await fetch(hashpressTheme.setLeaderboardDataUrl, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-WP-Nonce': hashpressTheme.nonce,
+//             },
+//             body: JSON.stringify({
+//                 data: JSON.stringify(data),
+//                 page: page,
+//                 fetchedAt: new Date().toISOString(),
+//             }),
+//         });
 
-    if (lastFetchDateString) {
-        let lastFetchDate = new Date(lastFetchDateString);
+//         const result = await response.json();
 
-        const fifteenMinutesAgo = new Date().getTime() - 15 * 60 * 1000; // 15 minutes in milliseconds
-
-        if (lastFetchDate.getTime() > fifteenMinutesAgo) {
-            // recently fetched
-            console.log('already fetched recently');
-            return;
-        }
-    }
-    let data = await fetchBalances('/api/v1/balances');
-    data = data.sort((a, b) => (a.balance > b.balance ? -1 : 1));
-
-    sendDataToServer(data);
-
-    // location.reload();
-    window.location.href = window.location.href.split('?')[0] + '?refresh=' + new Date().getTime();
-}
-
-function updateProgress(progress) {
-    let progressElem = document.querySelector('.leaderboard__progress');
-
-    if (progressElem) {
-        progressElem.style.width = (100 * progress) / 561 + '%';
-    }
-}
-
-async function fetchBalances(path, page = 0) {
-    updateProgress(page);
-
-    let min = 100000 * 1e8;
-    let domain = 'https://mainnet.mirrornode.hedera.com';
-
-    let query = domain + path;
-    if (!path.includes('?account.balance=gte:' + min)) {
-        query += '?account.balance=gte:' + min;
-    }
-
-    let res = [];
-    let res2 = [];
-
-    await fetch(query)
-        .then((response) => response.text())
-        .then(async (body) => {
-            let data;
-            try {
-                data = JSON.parse(body);
-            } catch (error) {
-                return res;
-            }
-
-            let balances = data['balances'];
-
-            if (!balances) {
-                return;
-            }
-
-            for (let i = 0; i < balances.length; i++) {
-                let balance = balances[i];
-                res.push({ account: balance.account, balance: balance.balance });
-            }
-
-            let nextpage = data['links']['next'];
-            if (nextpage !== null) {
-                console.log(nextpage);
-                res2 = await fetchBalances(nextpage, page + 1);
-            }
-        })
-        .catch((error) => {
-            return res;
-        });
-
-    return res.concat(res2);
-}
-
-async function sendDataToServer(data, page) {
-    try {
-        const response = await fetch(hashpressTheme.setLeaderboardDataUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-WP-Nonce': hashpressTheme.nonce,
-            },
-            body: JSON.stringify({
-                data: JSON.stringify(data),
-                page: page,
-                fetchedAt: new Date().toISOString(),
-            }),
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            console.log('Successfully updated data');
-        } else {
-            console.error('Failed to update transaction IDs');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
+//         if (result.success) {
+//             console.log('Successfully updated data');
+//         } else {
+//             console.error('Failed to update transaction IDs');
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+//     }
+// }
 
 async function getLeaderboardData() {
     console.log('get data');

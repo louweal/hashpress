@@ -82,3 +82,93 @@ function hashpress_theme_get_leaderboard_data()
 
     return new WP_REST_Response($data, 200);
 }
+
+add_action('init', 'hashpress_leaderboard_cron_schedule');
+function hashpress_leaderboard_cron_schedule()
+{
+    // fetch now!
+    // hashpress_leaderboard_fetch_event();
+
+    if (!wp_next_scheduled('hashpress_leaderboard_fetch_event')) {
+        wp_schedule_event(time(), 'hourly', 'hashpress_leaderboard_fetch_event');
+    }
+}
+
+function hashpress_leaderboard_fetch_event()
+{
+    $balances = fetch_balances('/api/v1/balances');
+
+    if ($balances) {
+        set_transient("leaderboard_data", json_encode($balances), 12 * HOUR_IN_SECONDS);
+        set_transient("leaderboard_fetched_at", date('Y-m-d H:i:s'), 12 * HOUR_IN_SECONDS);
+    }
+}
+
+
+function fetch_balances($path, $page = 0)
+{
+    $min = 100000 * 1e8;
+    $domain = 'https://mainnet.mirrornode.hedera.com';
+    $query = $domain . $path;
+
+    // Ensure the query includes the balance filter if not already included
+    if (strpos($path, '?account.balance=gte:' . $min) === false) {
+        $query .= '?account.balance=gte:' . $min;
+    }
+
+    $res = [];
+    $res2 = [];
+
+    try {
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $query);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FAILONERROR, true);
+
+        // Execute the cURL request
+        $body = curl_exec($ch);
+
+        // Check for errors in the cURL request
+        if (curl_errno($ch)) {
+            throw new Exception('cURL error: ' . curl_error($ch));
+        }
+
+        // Decode the JSON response
+        $data = json_decode($body, true);
+        if ($data === null) {
+            return $res;
+        }
+
+        // Process the balances
+        $balances = $data['balances'] ?? null;
+        if (!$balances) {
+            return $res;
+        }
+
+        // Extract the balance data
+        foreach ($balances as $balance) {
+            $res[] = ['account' => $balance['account'], 'balance' => $balance['balance']];
+        }
+
+        // Check if there's a next page of results
+        $nextpage = $data['links']['next'] ?? null;
+        if ($nextpage !== null) {
+            // error_log("Next page: $nextpage");
+            // Recursively fetch the next page
+            $res2 = fetch_balances($nextpage, $page + 1);
+        }
+
+        // Close cURL
+        curl_close($ch);
+    } catch (Exception $e) {
+        // Handle any errors
+        error_log("Error fetching balances: " . $e->getMessage());
+        return $res;
+    }
+
+    // Combine the current and next page results
+    return array_merge($res, $res2);
+}
+
+// cron job to fetch balances every hour

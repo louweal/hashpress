@@ -5,6 +5,13 @@ $leaderboard_fetched_at = get_transient('leaderboard_fetched_at') ?: "";
 $fetch_date = new DateTime($leaderboard_fetched_at, new DateTimeZone('UTC'));
 
 $accounts = json_decode($leaderboard_data, true);
+
+// $path = '/api/v1/balances';
+// $data = fetch_balances($path);
+
+// echo "<pre>";
+// print_r($data); // Print the fetched balance data
+// echo "</pre>";
 ?>
 
 <section class="section" id="accounts">
