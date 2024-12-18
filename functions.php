@@ -38,4 +38,4 @@ foreach ($templates as $template) {
 
 
 
-// do_action('warpdrive_cache_flush'); // This will flush the entire cache
+do_action('warpdrive_cache_flush'); // This will flush the entire cache
