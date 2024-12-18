@@ -21,14 +21,4 @@ $animation = $shortcode != 'hashpress_reviews_section' ? 'data-aos="fade-up-10"'
 
     <h4>Output:</h4>
     <div><?php echo do_shortcode('[' . $shortcode . ']'); ?></div>
-
-    <?php
-    // if (str_contains($shortcode, 'store')) {
-    //     global $post;
-    //     if ($post) {
-    //         $post_id = $post->ID;
-    //         var_dump(get_post_meta($post_id, '_transaction_ids', true));
-    //     }
-    // }
-    ?>
 </div>

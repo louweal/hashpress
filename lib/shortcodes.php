@@ -1,6 +1,6 @@
 <?php
 
-add_shortcode('stored_transactions', 'stored_transactions_function');
+// add_shortcode('stored_transactions', 'stored_transactions_function');
 function stored_transactions_function($atts)
 {
     $output = '';
@@ -24,11 +24,3 @@ function stored_transactions_function($atts)
 
     return '<div class="block__code">' . $output . '</div>';
 }
-
-// function custom_code_after_product_title()
-// {
-//     echo "<div class='block'> <h3>Stored transactions</h3>";
-//     echo do_shortcode('[stored_transactions]');
-//     echo '</div>';
-// }
-// add_action('woocommerce_after_single_product_summary', 'custom_code_after_product_title', 20);

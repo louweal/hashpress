@@ -14,7 +14,6 @@ import { initLeaderboard } from './modules/initLeaderboard';
     heroTexts.forEach((heroText) => {
         heroText.classList.add('fade-up-10');
     });
-    // heroText.setAttribute('data-aos', 'fade-up-10');
 
     AOS.init({
         duration: 850,

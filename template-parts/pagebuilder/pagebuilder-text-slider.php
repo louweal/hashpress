@@ -8,8 +8,6 @@
 $editor = get_sub_field('text-slider_editor');
 $buttons = get_sub_field('text-slider_buttons') ?: [];
 $slides = get_sub_field('text-slider_slider') ?: [];
-
-// return;
 ?>
 
 <section class="section section--flex">

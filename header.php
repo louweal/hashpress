@@ -91,8 +91,6 @@ function random_color($min, $max)
     </header>
 
 
-
-
     <div class="mobile-menu">
         <?php if (has_nav_menu('menu-main')) { ?>
             <div class="header__navigation" id="header-nav">
@@ -101,7 +99,6 @@ function random_color($min, $max)
                     'container'             => 'nav',
                     'container_class'       => 'menu menu--main',
                     'menu_class'            => 'menu__list menu__list--main',
-                    // 'walker'                => new Custom_Walker_Nav_Menu()
                 );
                 wp_nav_menu($nav_menu_args); ?>
             </div>
