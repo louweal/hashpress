@@ -11,7 +11,6 @@ export const initAccordion = () => {
                     content.style.height = content.scrollHeight + 'px';
                 } else {
                     content.style.height = '0px';
-                    console.log('00');
                 }
                 content.classList.toggle('is-active');
             }
@@ -27,7 +26,6 @@ export const initAccordion = () => {
                 content.style.height = content.scrollHeight + 'px';
             } else {
                 content.style.height = '0px';
-                console.log('00');
             }
             content.classList.toggle('is-active');
         });

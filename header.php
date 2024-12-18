@@ -84,7 +84,7 @@ function random_color($min, $max)
 
 
             <div class="lg:col-span-2 items-end justify-end hidden lg:flex order-3">
-                <a href="/contact" class="btn">Get in touch</a>
+                <a target="_blank" href="/wp-content/uploads/2024/12/PitchHashPressUpdate.mp4" class="btn">Watch demo</a>
 
             </div>
         </div>

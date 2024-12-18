@@ -14,7 +14,6 @@
  *
  */
 $templates = array(
-    // 'lib/ajax.php',                // Ajax functions
     'lib/filters.php',            // Filter hooks
     'lib/helpers.php',            // Helper functions
     'lib/theme.php',            // Theme support configuration

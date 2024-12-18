@@ -5,12 +5,12 @@
  * Description:			Accordion Pagebuilder Layout
  */
 
-$editor = get_sub_field('accordion_editor');
+$$editor = get_sub_field('accordion_editor');
 $items = get_sub_field('accordion_repeater') ?: [];
 
 ?>
 
-<section class="section section--flex" id="<?php echo $anchor; ?>">
+<section class="section section--flex">
     <div class="container">
         <div class="grid lg:grid-cols-12">
             <div class="lg:col-span-8 lg:col-start-3">

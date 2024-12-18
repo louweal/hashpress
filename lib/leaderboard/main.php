@@ -83,18 +83,19 @@ function hashpress_theme_get_leaderboard_data()
     return new WP_REST_Response($data, 200);
 }
 
+// fetch now!
+// hashpress_leaderboard_fetch_event();
+
 add_action('init', 'hashpress_leaderboard_cron_schedule');
 function hashpress_leaderboard_cron_schedule()
 {
-    // fetch now!
-    // hashpress_leaderboard_fetch_event();
-
     if (!wp_next_scheduled('hashpress_leaderboard_fetch_event')) {
         wp_schedule_event(time(), 'hourly', 'hashpress_leaderboard_fetch_event');
     }
 }
+add_action('hashpress_leaderboard_fetch_event', 'hashpress_leaderboard_fetch_function');
 
-function hashpress_leaderboard_fetch_event()
+function hashpress_leaderboard_fetch_function()
 {
     $balances = fetch_balances('/api/v1/balances');
     // sort balances
@@ -105,6 +106,7 @@ function hashpress_leaderboard_fetch_event()
     if ($balances) {
         set_transient("leaderboard_data", json_encode($balances), 12 * HOUR_IN_SECONDS);
         set_transient("leaderboard_fetched_at", date('Y-m-d H:i:s'), 12 * HOUR_IN_SECONDS);
+        error_log("Fetched Leaderboard Balances at: " . date('Y-m-d H:i:s'));
     }
 }
 
@@ -175,5 +177,3 @@ function fetch_balances($path, $page = 0)
     // Combine the current and next page results
     return array_merge($res, $res2);
 }
-
-// cron job to fetch balances every hour

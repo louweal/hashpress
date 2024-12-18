@@ -89,33 +89,6 @@ export const initLeaderboard = async () => {
     });
 };
 
-// async function sendDataToServer(data, page) {
-//     try {
-//         const response = await fetch(hashpressTheme.setLeaderboardDataUrl, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'X-WP-Nonce': hashpressTheme.nonce,
-//             },
-//             body: JSON.stringify({
-//                 data: JSON.stringify(data),
-//                 page: page,
-//                 fetchedAt: new Date().toISOString(),
-//             }),
-//         });
-
-//         const result = await response.json();
-
-//         if (result.success) {
-//             console.log('Successfully updated data');
-//         } else {
-//             console.error('Failed to update transaction IDs');
-//         }
-//     } catch (error) {
-//         console.error('Error:', error);
-//     }
-// }
-
 async function getLeaderboardData() {
     // console.log('get data');
     try {
@@ -130,11 +103,11 @@ async function getLeaderboardData() {
 
         const data = await response.json();
         if (data.error) {
-            console.error(`Error fetching data for ID ${id}: ${data.error}`);
+            console.error(`Error fetching data: ${data.error}`);
             return;
         }
         return data;
     } catch (error) {
-        console.error(`Error fetching data for ID ${id}:`, error);
+        console.error(`Error fetching data:`, error);
     }
 }

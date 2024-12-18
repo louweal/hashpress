@@ -9,10 +9,8 @@ $post = $args['product'];
 global $post;
 
 $product = wc_get_product($post->ID);
-// debug($args['link']);
 $has_link = $args['link'] == true;
 $href = $has_link ? 'a href="' . get_the_permalink() . '"' : null;
-// $component = $has_link ? 'a' : 'div';
 ?>
 
 <article class="card">
