@@ -16,7 +16,9 @@
         line-height: 1.5;
     }
 
-    input[type='text'] {
+    input[type='text'],
+    input[type='date'],
+    select {
         padding: 1rem;
         border-radius: 0.5rem;
         background-color: var(--color-background);

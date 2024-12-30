@@ -5,6 +5,7 @@ import { initSplitting } from './modules/initSplitting';
 import AOS from 'aos';
 import { initAccordion } from './modules/initAccordion';
 import { initLeaderboard } from './modules/initLeaderboard';
+import { initTimeMachine } from './modules/initTimeMachine';
 
 // Main thread
 (async function () {
@@ -29,4 +30,5 @@ import { initLeaderboard } from './modules/initLeaderboard';
     initSplitting();
     initAccordion();
     initLeaderboard();
+    initTimeMachine();
 })();
