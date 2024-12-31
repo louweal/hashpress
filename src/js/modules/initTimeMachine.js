@@ -1,77 +1,84 @@
 export const initTimeMachine = async () => {
     let timeMachine = document.querySelector('#time-machine');
-    if (!timeMachine) return;
-
-    let currency = document.querySelector('.time-machine-currency');
-    let input = document.querySelector('.time-machine-input');
     let outputBlock = document.querySelector('.time-machine-output');
-    if (!outputBlock) return;
+    if (!timeMachine || !outputBlock) return;
 
-    input.addEventListener('input', () => {
-        handleInputChange();
+    let prices;
+    let lowestPrice;
+    prices = await handleDateChange();
+    lowestPrice = await getLowestPriceOnDate();
+    await handleChange(prices, lowestPrice);
+
+    let input = document.querySelector('.time-machine-input');
+    input.addEventListener('input', async () => {
+        await handleChange(prices, lowestPrice);
     });
-
-    handleCurrencyChange(outputBlock);
 
     let date = document.querySelector('.time-machine-date');
-    let prices = await handleDateChange();
-
-    currency.addEventListener('change', () => {
-        handleCurrencyChange(outputBlock, prices);
+    date.addEventListener('change', async () => {
+        prices = await handleDateChange();
+        lowestPrice = await getLowestPriceOnDate();
+        await handleChange(prices, lowestPrice);
     });
 
-    if (input.value) {
-        date.addEventListener('change', async () => {
-            prices = await handleDateChange();
+    let currency = document.querySelector('.time-machine-currency');
+    currency.addEventListener('change', async () => {
+        lowestPrice = await getLowestPriceOnDate();
+        await handleChange(prices, lowestPrice);
+    });
+
+    async function handleChange(prices, lowestPrice) {
+        let input = document.querySelector('.time-machine-input');
+        let date = document.querySelector('.time-machine-date');
+        let currency = document.querySelector('.time-machine-currency');
+        if (!date || !date.value) return;
+        if (!input || !input.value) return;
+        if (!currency || !currency.value) return;
+
+        let timestamp = new Date(date.value).getTime() / 1000;
+
+        let balance;
+
+        if (input.value.startsWith('0.0.')) {
+            let account = input.value;
+            let url = `https://mainnet-public.mirrornode.hedera.com/api/v1/balances?account.id=${account}&timestamp=${timestamp}`;
+            balance = await fetchBalance(url);
+        } else {
+            // let isNumber = /^\d+$/.test(input.value);
+            // if (isNumber) {
+            // }
+            balance = +input.value;
+        }
+
+        // output
+        let inBalanceOutput = outputBlock.querySelector('#in-balance');
+        inBalanceOutput.innerText = balance;
+
+        let outBalanceOutput = outputBlock.querySelector('#out-balance');
+        outBalanceOutput.innerText = balance * prices[currency.value];
+
+        let lowestOutBalanceOutput = outputBlock.querySelector('#lowest-out-balance');
+        lowestOutBalanceOutput.innerText = balance * lowestPrice;
+
+        let priceOutput = outputBlock.querySelector('#price');
+        priceOutput.innerText = prices[currency.value];
+
+        let currencyOutputs = document.querySelectorAll('.currency');
+        currencyOutputs.forEach((currencyOutput) => {
+            currencyOutput.innerText = currency.value.toUpperCase();
         });
 
-        if (currency) {
-            if (currency.value) {
-                console.log(currency.value + ' selected');
-                if (prices) {
-                    // console.log(prices[currency.value]);
+        // output lowest price
 
-                    let priceOutput = outputBlock.querySelector('#price');
-                    priceOutput.innerText = Math.round(prices[currency.value] * 1000000) / 1000000;
+        let lowestPriceOutput = outputBlock.querySelector('#lowest-price');
+        lowestPriceOutput.innerText = lowestPrice;
 
-                    let currencyOutput = outputBlock.querySelector('#currency2');
-                    currencyOutput.innerText = currency.value.toUpperCase();
-                } else {
-                    console.log('no prices');
-                }
-            }
-        }
-    }
+        const offsetMinutes = new Date().getTimezoneOffset();
+        const offsetHours = -offsetMinutes / 60; // Negative because offset is minutes behind UTC
+        const timezone = `UTC${offsetHours >= 0 ? '+' : ''}${offsetHours}`;
 
-    async function handleCurrencyChange(outputBlock, prices) {
-        let currency = document.querySelector('.time-machine-currency');
-        if (!currency) return;
-        if (!currency.value) return;
-
-        if (prices) {
-            let priceOutput = outputBlock.querySelector('#price');
-            priceOutput.innerText = Math.round(prices[currency.value] * 1000000) / 1000000;
-        }
-
-        let currencyOutput = outputBlock.querySelector('#currency');
-        currencyOutput.innerText = currency.value.toUpperCase();
-
-        let currencyOutput2 = outputBlock.querySelector('#currency2');
-        currencyOutput2.innerText = currency.value.toUpperCase();
-    }
-
-    async function handleInputChange() {
-        let input = document.querySelector('.time-machine-input');
-        if (!input) return;
-        if (!input.value) return;
-        if (value.startsWith('0.0.')) {
-            console.log('fetch hist balance');
-        } else {
-            let isNumber = /^\d+$/.test(value);
-            if (isNumber) {
-                console.log('convert');
-            }
-        }
+        let timezoneOutput = outputBlock.querySelector('#timezone');
+        timezoneOutput.innerText = timezone;
     }
 
     async function handleDateChange() {
@@ -84,8 +91,12 @@ export const initTimeMachine = async () => {
         let dateOutput = outputBlock.querySelector('#date');
         dateOutput.innerText = humanReadableDate;
 
+        let dateOutput2 = outputBlock.querySelector('#date2');
+        dateOutput2.innerText = humanReadableDate;
+
         if (!inFuture(date.value)) {
             let formattedDate = formatDateToDMY(date.value);
+            console.log(formattedDate);
 
             let prices = await fetchPrice(formattedDate);
             return prices;
@@ -95,15 +106,12 @@ export const initTimeMachine = async () => {
     }
 
     function inFuture(date) {
-        console.log(date);
         let timestamp = new Date(date).getTime();
-        console.log(timestamp);
         return new Date(timestamp) > new Date();
     }
 
     function formatDateToDMY(dateString) {
         const [year, month, day] = dateString.split('-');
-        console.log(year, month, day);
         return `${day}-${month}-${year}`;
     }
 
@@ -114,12 +122,63 @@ export const initTimeMachine = async () => {
         try {
             let response = await fetch(url);
             let data = await response.json();
-
-            let marketData = data['market_data'];
-            let prices = marketData['current_price'];
-            return prices;
+            return data['market_data']['current_price'];
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    async function fetchBalance(url) {
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+            if (data['balances']) {
+                if (data['balances'].length > 0) {
+                    let balance = data['balances'][0]['balance'];
+                    return balance / 1e8;
+                }
+            } else {
+                console.error('Invalid request to Hedera Mirrornode');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function getLowestPriceOnDate() {
+        let date = document.querySelector('.time-machine-date');
+        if (!date) return;
+        if (!date.value) return;
+        let currency = document.querySelector('.time-machine-currency');
+        if (!currency) return;
+        if (!currency.value) return;
+
+        try {
+            const userTimezoneOffset = new Date().getTimezoneOffset() * 60; // Offset in seconds
+            const startOfDay = Math.floor(new Date(date.value).setHours(0, 0, 0, 0) / 1000) - userTimezoneOffset;
+            const endOfDay = startOfDay + 86400; // Add 24 hours (86400 seconds)
+
+            const url =
+                `https://api.coingecko.com/api/v3/coins/hedera-hashgraph/market_chart/range` +
+                `?vs_currency=${currency.value}&from=${startOfDay}&to=${endOfDay}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            // Find the lowest price in the returned price data
+            const lowestPrice = data.prices.reduce((min, [_, price]) => Math.min(min, price), Infinity);
+
+            // console.log(
+            //     `The lowest price of hedera on ${date.value} was ${lowestPrice} ${currency.value.toUpperCase()}.`,
+            // );
+            return lowestPrice;
+        } catch (error) {
+            console.error('Error fetching or processing data:', error);
+            throw error;
         }
     }
 };
