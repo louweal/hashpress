@@ -6,6 +6,7 @@
  */
 
 $fiats = ["usd", "eur", "jpy", "gbp", "aud", "cad", "chf", "cny", "hkd", "nzd", "sek", "krw", "sgd", "nok", "mxn", "inr", "rub", "zar", "try", "brl", "twd", "dkk", "pln", "thb", "idr", "huf", "czk", "ils", "clp", "php", "aed", "sar", "myr", "ron"];
+$fiats = ["usd"];
 
 ?>
 
@@ -28,20 +29,17 @@ $fiats = ["usd", "eur", "jpy", "gbp", "aud", "cad", "chf", "cny", "hkd", "nzd", 
             </div>
             <div class="lg:col-span-5 order-2 lg:order-1">
                 <div class="block time-machine-output">
-                    <p>
+                    <!-- <p>
                         HBAR price: <strong id="price"></strong> <strong class="currency">USD</strong>
-
-                    </p>
-
+                    </p> -->
 
                     <p>
                         You had <strong id="in-balance">???</strong> <strong>HBAR</strong> on
-                        <strong id="date">Mon Jan 01 2024</strong> <strong>00:00 UTC</strong> which was equal to <strong id="out-balance">???</strong> <strong class="currency">USD</strong>.
+                        <strong id="date">Mon Jan 01 2024</strong> <strong>(UTC)</strong> which was equal to:
+
+                    <p id="out-balance">???</p>
                     </p>
 
-                    <p>
-                        Lowest price on <strong id="date2">Mon Jan 01 2024</strong> in timezone <strong id="timezone">UTC</strong>: <strong id="lowest-price"></strong> <strong class="currency">USD</strong>.
-                        The lowest balance you had this day was <strong id="lowest-out-balance"></strong> <strong class="currency">USD</strong>.</p>
                 </div>
             </div>
 
